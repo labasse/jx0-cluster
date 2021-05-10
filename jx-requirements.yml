@@ -5,27 +5,46 @@ spec:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    clusterName: tf-jx-main-skink
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
+    gke:
+      projectNumber: "985323848873"
+    project: plasma-system-313311
     provider: gke
     registry: gcr.io
+    zone: us-central1-a
   environments:
   - key: dev
+    owner: labasse
+    repository: jx0-cluster
   - key: staging
   - key: production
   ingress:
-    domain: ""
+    domain: 35.239.219.216.nip.io
     externalDNS: false
+    kind: ingress
     namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
-      production: false
+      production: true
+  kuberhealthy: true
+  pipelineUser:
+    username: labasse
   repository: nexus
   secretStorage: gsm
+  storage:
+  - name: logs
+    url: gs://logs-tf-jx-main-skink-bb8ad7092abc
+  - name: reports
+    url: gs://reports-tf-jx-main-skink-bb8ad7092abc
+  - name: repository
+    url: gs://repository-tf-jx-main-skink-bb8ad7092abc
   vault: {}
   webhook: lighthouse
